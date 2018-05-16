@@ -5,10 +5,12 @@ import (
 )
 
 type Config struct {
-	TimeZone string
+	File  string
+	Value interface{}
+}
+
+type Setting struct {
+	Config   *Config
 	Service  *goservice.Config
-	Config struct {
-		File  string
-		Value interface{}
-	}
+	TimeZone string
 }

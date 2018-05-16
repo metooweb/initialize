@@ -11,20 +11,20 @@ import (
 
 var RootPath string
 
-func Init(cfg *Config) (err error) {
+func Init(setting *Setting) (err error) {
 
-	if cfg.TimeZone == "" {
-		cfg.TimeZone = "Asia/Shanghai"
+	if setting.TimeZone == "" {
+		setting.TimeZone = "Asia/Shanghai"
 	}
 
-	time.Local, _ = time.LoadLocation(cfg.TimeZone)
+	time.Local, _ = time.LoadLocation(setting.TimeZone)
 
-	if err = ini.MapTo(cfg.Config, cfg.Config.File); err != nil {
+	if err = ini.MapTo(setting.Config, setting.Config.File); err != nil {
 		err = errors.WithStack(err)
 		return
 	}
 
-	err = goservice.Init(cfg.Service)
+	err = goservice.Init(setting.Service)
 
 	return
 }
