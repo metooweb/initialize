@@ -19,7 +19,7 @@ func Init(setting *Setting) (err error) {
 
 	time.Local, _ = time.LoadLocation(setting.TimeZone)
 
-	if err = ini.MapTo(setting.Config, setting.Config.File); err != nil {
+	if err = ini.MapTo(setting.Config.Value, setting.Config.File); err != nil {
 		err = errors.WithStack(err)
 		return
 	}
