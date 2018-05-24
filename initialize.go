@@ -23,9 +23,9 @@ func Init(setting *Setting) (err error) {
 		err = errors.WithStack(err)
 		return
 	}
-
-	err = goservice.Init(setting.Service)
-
+	if setting.Service != nil {
+		err = goservice.Init(setting.Service)
+	}
 	return
 }
 
